@@ -12,17 +12,16 @@ while 1:
     		"https://www.reddit.com/reddits/.json?after="+after, 
     		data=None, 
     		headers={
-        		'User-Agent': 'python3:turkey_block_scanner:v1 (by /u/ardaozkal)'
+        		'User-Agent': 'python3:turkey_block_scanner:v1.1 (by /u/ardaozkal)'
     		}
 		)
 		output = urllib.request.urlopen(req).read().decode()
 		j = json.loads(output)
 		after = j["data"]["after"]
+		print("current after: " + str(after))
 		with open("sublist", "a") as myfile:
 			for child in j["data"]["children"]:
 				subname = child["data"]["display_name"]
 				myfile.write(subname+"\n")
 	except urllib.error.HTTPError as e:
 		print("HTTP Error: " + str(e.code))
-
-#https://www.reddit.com/reddits/.json
