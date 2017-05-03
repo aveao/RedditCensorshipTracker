@@ -7,7 +7,7 @@ count = 0
 
 def get_subreddit_list():
     try:
-        with open("nsfwsublist", "r") as sublist:
+        with open("sublist", "r") as sublist: # replace sublist with nsfwsublist to check NSFW blocks
             sublistsplit = sublist.read().split("\n")
             return sublistsplit
     except FileNotFoundError:

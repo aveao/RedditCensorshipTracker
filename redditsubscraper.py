@@ -6,6 +6,12 @@ import json
 global after
 after = ""
 
+global count
+count = 0
+
+global subnames
+subnames = ""
+
 while 1:
 	try:
 		req = urllib.request.Request(
@@ -18,10 +24,11 @@ while 1:
 		output = urllib.request.urlopen(req).read().decode()
 		j = json.loads(output)
 		after = j["data"]["after"]
-		print("current after: " + str(after))
+		print("current after: " + str(after) + ", current count: " + str(count))
+		for child in j["data"]["children"]:
+			subnames = subnames + child["data"]["display_name"] + "\n"
+			count = count + 1
 		with open("sublist", "a") as myfile:
-			for child in j["data"]["children"]:
-				subname = child["data"]["display_name"]
-				myfile.write(subname+"\n")
+			myfile.write(subnames)
 	except urllib.error.HTTPError as e:
 		print("HTTP Error: " + str(e.code))
