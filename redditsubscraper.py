@@ -18,7 +18,7 @@ while 1:
     		"https://www.reddit.com/reddits/.json?after="+after, 
     		data=None, 
     		headers={
-        		'User-Agent': 'python3:turkey_block_scanner:v1.1 (by /u/ardaozkal)'
+        		'User-Agent': 'python3:turkey_block_scraper:v1.2 (by /u/ardaozkal)'
     		}
 		)
 		output = urllib.request.urlopen(req).read().decode()

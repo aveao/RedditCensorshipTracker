@@ -3,7 +3,6 @@ import urllib.error
 import traceback
 
 global count
-count = 0
 
 def get_subreddit_list():
     try:
@@ -22,7 +21,7 @@ while 1:
 		count = count + 1
 		try:
 			req = urllib.request.Request(
-    			"https://www.reddit.com/r/"+val+".json", 
+    			"https://www.reddit.com/r/"+val+".json", # Simplest way to check seems to be the JSON endpoint- the output is shorter than the actual subreddit's HTML, and as the only way to see if a sub is blocked is just checking for HTTP responses, this seems like an easy way to check is this.
     			data=None, 
     			headers={
         			'User-Agent': 'python3:turkey_block_scanner_part2:v1.1 (by /u/ardaozkal)'
