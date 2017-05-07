@@ -28,9 +28,9 @@ for val in subslist:
             response = conn.getresponse()
             if response.status == 451:
                 call(["notify-send", 'Found blocked SR', val])
-                print("Blocked: " + val)
+                print("Blocked: (" + str(count) + ")" + val)
             else:
-                print("Not Blocked: " + val)
+                print("Not Blocked: (" + str(count) + ")" + val)
 	except Exception:
 		print(traceback.format_exc())
 
