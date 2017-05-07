@@ -1,5 +1,6 @@
 import http.client
 import traceback
+from subprocess import call
 
 global count
 
@@ -13,6 +14,7 @@ def get_subreddit_list():
     except Exception:
         print(traceback.format_exc())
 
+#subslist = ["twinks", "firstworldanarchists"]
 subslist = get_subreddit_list()
 count = 0
 for val in subslist:
@@ -24,10 +26,11 @@ for val in subslist:
             conn.endheaders()
             conn.send("")
             response = conn.getresponse()
-            if str(response.status) == "451":
-                print(val + ": Blocked")
+            if response.status == 451:
+                call(["notify-send", 'Found blocked SR', val])
+                print("Blocked: " + val)
             else:
-                print(val + ": Not blocked")
+                print("Not Blocked: " + val)
 	except Exception:
 		print(traceback.format_exc())
 
