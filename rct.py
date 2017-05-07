@@ -22,7 +22,7 @@ for val in subslist:
 	try:
             conn = http.client.HTTPConnection("www.reddit.com")
             conn.putrequest("HEAD", "/r/"+val+".json")
-            conn.putheader("User-Agent", "python3:turkey_block_scanner_part2:v1.1 (by /u/ardaozkal)")
+            conn.putheader("User-Agent", "python3:turkey_block_scanner_part2:v1.2 (by /u/ardaozkal)")
             conn.endheaders()
             conn.send("")
             response = conn.getresponse()
